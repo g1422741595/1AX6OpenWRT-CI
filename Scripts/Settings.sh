@@ -9,7 +9,7 @@ find ./feeds/luci/collections/ -type f -name "Makefile" -exec sed -i "s/luci-the
 #修改immortalwrt.lan关联IP
 find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js" -exec sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" {} +
 #添加编译日期标识
-find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js" -exec sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_MARK-$WRT_DATE')/g" {} +
+find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js" -exec sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_DATE')/g" {} +
 
 #修改默认WIFI账号密码
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
@@ -51,3 +51,36 @@ if [[ "${WRT_TARGET^^}" == *"QUALCOMMAX"* ]]; then
 		echo "qualcommax set up nowifi successfully!"
 	fi
 fi
+
+if [[ "${WRT_CONFIG,,}" == *"ipq60"* ]]; then
+	echo "IPQ60XX CONFIG set up successfully!"
+	echo "CONFIG_PACKAGE_kmod-sctp=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-sctp-diag=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-dockerman=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-openclash=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-taskplan=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-adguardhome=y" >> ./.config
+#
+# Zoneinfo
+#
+	echo "CONFIG_PACKAGE_zoneinfo-africa=y" >> ./.config
+	# CONFIG_PACKAGE_zoneinfo-all is not set
+	echo "CONFIG_PACKAGE_zoneinfo-asia=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-atlantic=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-australia-nz=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-core=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-europe=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-india=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-northamerica=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-pacific=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-poles=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-simple=y" >> ./.config
+	echo "CONFIG_PACKAGE_zoneinfo-southamerica=y" >> ./.config
+	
+	echo "CONFIG_PACKAGE_luci-app-ddns-go=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-mosdns=y" >> ./.config
+	echo "CONFIG_PACKAGE_adguardhome=y" >> ./.config
+
+	
+fi
+
