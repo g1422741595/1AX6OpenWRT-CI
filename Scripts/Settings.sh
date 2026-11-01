@@ -65,8 +65,8 @@ if [[ "${WRT_CONFIG,,}" == *"ipq60"* ]]; then
 	echo "CONFIG_PACKAGE_python3-base=y" >> ./.config
 	echo "CONFIG_PACKAGE_python3-email=y" >> ./.config
 	echo "CONFIG_PACKAGE_python3-pkg-resources=y" >> ./.config
-	echo "CONFIG_PACKAGE_luci-app-netspeedtest=y" >> ./.config
-	echo "CONFIG_PACKAGE_luci-i18n-netspeedtest-zh-cn=y" >> ./.config
+	#echo "CONFIG_PACKAGE_luci-app-netspeedtest=y" >> ./.config
+	#echo "CONFIG_PACKAGE_luci-i18n-netspeedtest-zh-cn=y" >> ./.config
 #
 # Zoneinfo
 #
