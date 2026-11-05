@@ -67,6 +67,27 @@ if [[ "${WRT_CONFIG,,}" == *"ipq60"* ]]; then
 	echo "CONFIG_PACKAGE_python3-pkg-resources=y" >> ./.config
 	#echo "CONFIG_PACKAGE_luci-app-netspeedtest=y" >> ./.config
 	#echo "CONFIG_PACKAGE_luci-i18n-netspeedtest-zh-cn=y" >> ./.config
+	# 必需内核选项 docker
+	echo "CONFIG_CGROUPS=y" >> ./.config          
+	# 控制组资源隔离
+	echo "CONFIG_NAMESPACES=y" >> ./.config       
+	# 容器命名空间
+	echo "CONFIG_VETH=y" >> ./.config             
+	# 虚拟以太网设备
+	echo "CONFIG_BRIDGE=y" >> ./.config           
+	# 网桥支持
+	echo "CONFIG_OVERLAY_FS=y" >> ./.config       
+	# Overlay 文件系统
+	echo "CONFIG_PACKAGE_kmod-br-netfilter=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-veth=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-dm=y" >> ./.config
+
+	echo "CONFIG_PACKAGE_kmod-loop=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-br-netfilter=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-ipt-nathelper-rtsp=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-ipt-nat=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-ipt-raw=y" >> ./.config
+	echo "CONFIG_PACKAGE_kmod-ipt-tproxy=y" >> ./.config
 #
 # Zoneinfo
 #
